@@ -1,0 +1,15 @@
+#!/bin/bash
+
+TOOLS_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+cd "$TOOLS_ROOT/../"
+
+# Only one fuzzing test will be run per test
+# So, we have to list all the testing here
+# instead of using "-Dtest=uk.ac.ucl.shell.fuzz.**"
+JAZZER_FUZZ=1 mvn test "-Dtest=uk.ac.ucl.shell.fuzz.CutFuzzTest"
+JAZZER_FUZZ=1 mvn test "-Dtest=uk.ac.ucl.shell.fuzz.HeadFuzzTest"
+JAZZER_FUZZ=1 mvn test "-Dtest=uk.ac.ucl.shell.fuzz.TailFuzzTest"
+JAZZER_FUZZ=1 mvn test "-Dtest=uk.ac.ucl.shell.fuzz.SortFuzzTest"
+JAZZER_FUZZ=1 mvn test "-Dtest=uk.ac.ucl.shell.fuzz.UniqFuzzTest"
+JAZZER_FUZZ=1 mvn test "-Dtest=uk.ac.ucl.shell.fuzz.ShellFuzzTest"
